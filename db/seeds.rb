@@ -1,3 +1,11 @@
+puts "Clearing database..."
+
+Signup.destroy_all
+Camper.destroy_all
+Activity.destroy_all
+
+puts "Database cleared! 😊"
+
 puts "🏕 Seeding campers..."
 camper1 = Camper.create(name: 'Caitlin', age: 8)
 camper2 = Camper.create(name: 'Lizzie', age: 9)
@@ -19,13 +27,17 @@ activity7 = Activity.create(name: 'Canoeing', difficulty: 3)
 activity8 = Activity.create(name: 'Windsurfing', difficulty: 5)
 
 puts "🏕 Seeding signups..."
-Signup.create(camper_id: camper1.id, activity_id: activity2.id, time: 11)
-Signup.create(camper_id: camper1.id, activity_id: activity1.id, time: 12)
-Signup.create(camper_id: camper1.id, activity_id: activity4.id, time: 15)
-Signup.create(camper_id: camper2.id, activity_id: activity2.id, time: 11)
-Signup.create(camper_id: camper2.id, activity_id: activity1.id, time: 12)
-Signup.create(camper_id: camper4.id, activity_id: activity8.id, time: 16)
-Signup.create(camper_id: camper5.id, activity_id: activity7.id, time: 11)
-Signup.create(camper_id: camper3.id, activity_id: activity4.id, time: 12)
+# Signup.create(camper_id: camper1.id, activity_id: activity2.id, time: 11)
+# Signup.create(camper_id: camper1.id, activity_id: activity1.id, time: 12)
+# Signup.create(camper_id: camper1.id, activity_id: activity4.id, time: 15)
+# Signup.create(camper_id: camper2.id, activity_id: activity2.id, time: 11)
+# Signup.create(camper_id: camper2.id, activity_id: activity1.id, time: 12)
+# Signup.create(camper_id: camper4.id, activity_id: activity8.id, time: 16)
+# Signup.create(camper_id: camper5.id, activity_id: activity7.id, time: 11)
+# Signup.create(camper_id: camper3.id, activity_id: activity4.id, time: 12)
+
+10.times do
+    Signup.find_or_create_by(camper:  Camper.all.sample, activity: Activity.all.sample, time: rand(1..23) )
+end
 
 puts "✅ Done seeding!"
